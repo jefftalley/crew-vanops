@@ -11,7 +11,7 @@
     var stompClient = null;
 	var map;
 	var mapOptions;
-	var planeMarker = [];
+	var planeMarkers = [];
 	var flightArr = [];
 	var vanMarker = null;
 	var flightNumbers = []; 
@@ -99,7 +99,7 @@
 	      	for(i = 0; i < flightNumbers.length; i++) {
 	      		if(flight.flightNumber == flightNumbers[i]) {
 	      			// Update Flight
-	      			planeMarker[i]
+	      			planeMarkers[i].setPosition()
 	      			
 	      			exists = true;
 	      		} 
@@ -124,7 +124,7 @@
 	 				+ "\t" + flight.crews.status + "<br/>";
 	 			var myLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
 	 			
-	 			planeMarker.push( new google.maps.Marker({
+	 			var curPlaneMarker = planeMarkers.push( new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
 	 				 icon: planeImage
@@ -135,8 +135,8 @@
 	 					maxWidth: 250
 	 			});
 	 			
-	 			google.maps.event.addListener(planeMarker, 'click', function() {
-	 				planeInfoWindow.open(map, planeMarker);
+	 			google.maps.event.addListener(curPlaneMarker, 'click', function() {
+	 				planeInfoWindow.open(map, curPlaneMarker);
 	 			});
 	    	}
        }
@@ -157,7 +157,7 @@
 	 			
 	 			vanInfoWindow = new google.maps.InfoWindow({
 	 					content: vanText,
-	 					maxWidth: 50
+	 					maxWidth: 250
 	 			});
 	 			
 	 			google.maps.event.addListener(vanMarker, 'click', function() {
