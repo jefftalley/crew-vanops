@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <script src="js/sockjs-0.3.4.js"></script>
+    <script src="js/stomp.js"></script>
+    <script type="text/javascript">
+        var stompClient = null;
+
+        function connect() {
+            var socket = new SockJS('/requests');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                stompClient.subscribe('/topic/messages', function(message) {
+                    console.log('received message: ' + message);
+                    displayMessage(JSON.parse(message.body));
+                });
+            });
+        }
+
+        function send() {
+            console.log('sending message');
+            stompClient.send("/app/init", {}, '');
+            console.log('message sent');
+        }
+
+        function displayMessage(message) {
+            console.log('message received');
+            var response = document.getElementById('response');
+            var p = document.createElement('p');
+            p.style.wordWrap = 'break-word';
+            p.appendChild(document.createTextNode(message.flightNumber));
+            response.appendChild(p);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div>
+        <button id="refresh" onclick="connect();">Connect</button>
+        <button id="refresh" onclick="send();">Send</button>
+    </div>
+    <div id="conversationDiv">
+        <p id="response"></p>
+    </div>
+</div>
+</body>
+</html>
