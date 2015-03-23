@@ -181,7 +181,7 @@
       		} else {
       			// Create Van
 				var myLatLng = new google.maps.LatLng(van.latitude, van.longitude);
-	 			
+	 			var vanText = updateVanInfoText();
 	 			vanMarker = new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
@@ -200,16 +200,12 @@
       	}
        
        function updateVanInfoText(van) {
-	  		var vanText = van.vanId;
+	  		var vanText = van.vanId + "<br/><ul>";
 			
-			/* forEach(flight.crew, function(crewMember) {
-				planeText += "\t" + crewMember.gemsId + "<br/>"
-				+ "\t" + crewMember.firstName + "<br/>"
-				+ "\t" + crewMember.lastName + "<br/>"
-				+ "\t" + crewMember.position + "<br/>"
-				+ "\t" + crewMember.status + "<br/>";
-			}); */
-			
+	  		van.crews.forEach(function(crewMember) {
+				vanText += "<li>" + crewMember.position + " (" + crewMember.gemsId + ") " + crewMember.firstName + " " + crewMember.lastName
+			});
+			vanText = "</ul>";
 			return vanText;
  		}
        
