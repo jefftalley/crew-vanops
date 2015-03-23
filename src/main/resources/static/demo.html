@@ -155,10 +155,17 @@
 			+ "<b>Parking Pos.:</b> " + flight.parkingPosition + "<br/>"
 			+ "<b>Crew:</b><br/><ul>";
 			
+			var statusColor;
+			if (flight.status == "onboard") {
+				statusColor = "green";
+			} else if (flight.status == "enroute"){
+				statusColor = "black";
+			} else {
+				statusColor = "red";
+			}
+			
 			flight.crews.forEach(function(crewMember) {
-				planeText += "<li><b>Gems:</b> " + crewMember.gemsId + " (" + "<b>Name:</b> " + crewMember.firstName + " " + crewMember.lastName + ") "
-				+ "<b>Pos.:</b> " + crewMember.position + " "
-				+ "<b>Status:</b> " + crewMember.status + "</li>";
+				planeText += "<li style='color:" + statusColor +"'>" + crewMember.position + " (" + crewMember.gemsId + ") " + crewMember.firstName + " " + crewMember.lastName
 			});
 			planeText += "</ul>";
 			return planeText;

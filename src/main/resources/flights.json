@@ -62,14 +62,14 @@
         "firstName":"Jack",
         "lastName":"Black",
         "position":"CPT",
-        "status":"MIA"
+        "status":"late"
       },
       {
         "gemsId":"0585568",
         "firstName":"Adam",
         "lastName":"Sandler",
         "position":"F/O",
-        "status":"onboard"
+        "status":"enroute"
       }
     ]
   },
@@ -89,7 +89,7 @@
         "firstName":"Jeremy",
         "lastName":"Camp",
         "position":"CPT",
-        "status":"MIA"
+        "status":"late"
       },
       {
         "gemsId":"0542142",
@@ -123,7 +123,7 @@
         "firstName":"Arnold",
         "lastName":"Schwarzeneiger",
         "position":"T2",
-        "status":"WillBeBack"
+        "status":"late"
       }
     ]
   },
