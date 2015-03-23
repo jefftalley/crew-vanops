@@ -146,22 +146,23 @@
        }
       
       function updateFlightInfoText(flight) {
-    	  		var planeText = flight.scheduleDepartureTime + "<br/>"
- 				+ "<b>Flight #</b>: " + flight.flightNumber + "<br/>"
-				+ "<b>Tail<b/> #: " + flight.tailNumber + "<br/>"
-				+ "<b/>Origin:<b/> " + flight.origin + "<br/>"
-				+ "<b>Desitination:<b/> " +flight.destination + "<br/>"
-				+ "<b>Parking Pos.:<b/> " + flight.parkingPosition + "<br/>"
-				+ "<b>Crew:<b/><br/><ul>";
-				
-				flight.crews.forEach(function(crewMember) {
-					planeText += "<li><b>Gems:<b/> " + crewMember.gemsId + " (" + "<b>Name:<b/> " + crewMember.firstName + " " + crewMember.lastName + ") "
-	 				+ "<b>Pos.:<b/> " + crewMember.position + " "
-	 				+ "<b>Status:<b/> " + crewMember.status + "</li>";
-				});
-				planeText += "</ul>";
-				return planeText;
-      }
+	  		var planeText = 
+	  			"<b>Depart Time:</b> " + flight.scheduleDepartureTime + "<br/>"
+			+ "<b>Flight #</b>: " + flight.flightNumber + "<br/>"
+			+ "<b>Tail</b> #: " + flight.tailNumber + "<br/>"
+			+ "<b/>Origin:</b> " + flight.origin + "<br/>"
+			+ "<b>Desitination:</b> " +flight.destination + "<br/>"
+			+ "<b>Parking Pos.:</b> " + flight.parkingPosition + "<br/>"
+			+ "<b>Crew:</b><br/><ul>";
+			
+			flight.crews.forEach(function(crewMember) {
+				planeText += "<li><b>Gems:</b> " + crewMember.gemsId + " (" + "<b>Name:</b> " + crewMember.firstName + " " + crewMember.lastName + ") "
+				+ "<b>Pos.:</b> " + crewMember.position + " "
+				+ "<b>Status:</b> " + crewMember.status + "</li>";
+			});
+			planeText += "</ul>";
+			return planeText;
+	   }
        
        function processVan(van) {
       		if(vanMarker != null) {
