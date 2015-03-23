@@ -157,9 +157,9 @@
 			
 			flight.crews.forEach(function(crewMember) {
 				var statusColor;
-				if (crew.status == "onboard") {
+				if (crewMember.status == "onboard") {
 					statusColor = "green";
-				} else if (crew.status == "enroute"){
+				} else if (crewMember.status == "enroute"){
 					statusColor = "black";
 				} else {
 					statusColor = "red";
