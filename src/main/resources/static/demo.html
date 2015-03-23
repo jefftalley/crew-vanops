@@ -133,21 +133,19 @@
       
       function updateFlightInfoText(flight) {
     	  		var planeText = flight.scheduleDepartureTime + "<br/>"
- 				+ "Flight #: " + flight.flightNumber + "<br/>"
-				+ "Tail #: " + flight.tailNumber + "<br/>"
-				+ "Origin: " + flight.origin + "<br/>"
-				+ "Desitination: " +flight.destination + "<br/>"
-				+ "Parking Pos.: " + flight.parkingPosition + "<br/>"
-				+ "Crew:<br/>";
+ 				+ "<b>Flight #</b>: " + flight.flightNumber + "<br/>"
+				+ "<b>Tail<b/> #: " + flight.tailNumber + "<br/>"
+				+ "<b/>Origin:<b/> " + flight.origin + "<br/>"
+				+ "<b>Desitination:<b/> " +flight.destination + "<br/>"
+				+ "<b>Parking Pos.:<b/> " + flight.parkingPosition + "<br/>"
+				+ "<b>Crew:<b/><br/><ul>";
 				
 				flight.crews.forEach(function(crewMember) {
-					planeText += "\t" + crewMember.gemsId + "<br/>"
-	 				+ "\t First Name: " + crewMember.firstName + "<br/>"
-	 				+ "\t Last Name:" + crewMember.lastName + "<br/>"
-	 				+ "\t Pos.: " + crewMember.position + "<br/>"
-	 				+ "\t Status: " + crewMember.status + "<br/>";
+					planeText += "<li><b>Gems:<b/> " + crewMember.gemsId + " (" + "<b>Name:<b/> " + crewMember.firstName + " " + crewMember.lastName + ") "
+	 				+ "<b>Pos.:<b/> " + crewMember.position + " "
+	 				+ "<b>Status:<b/> " + crewMember.status + "</li>";
 				});
-				
+				planeText += "</ul>";
 				return planeText;
       }
        
