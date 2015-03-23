@@ -2,9 +2,8 @@ package org.demo.domain;
 
 public class VanUpdate {
 	private String vanId;
-	private String latitude;
-	private String longitude;
-	private long delay;
+	private double latitude;
+	private double longitude;
 
 	public String getVanId() {
 		return vanId;
@@ -14,27 +13,19 @@ public class VanUpdate {
 		this.vanId = vanId;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
-	}
-
-	public long getDelay() {
-		return delay;
-	}
-
-	public void setDelay(long delay) {
-		this.delay = delay;
 	}
 }
