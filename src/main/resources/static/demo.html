@@ -155,16 +155,15 @@
 			+ "<b>Parking Pos.:</b> " + flight.parkingPosition + "<br/>"
 			+ "<b>Crew:</b><br/><ul>";
 			
-			var statusColor;
-			if (flight.status == "onboard") {
-				statusColor = "green";
-			} else if (flight.status == "enroute"){
-				statusColor = "black";
-			} else {
-				statusColor = "red";
-			}
-			
 			flight.crews.forEach(function(crewMember) {
+				var statusColor;
+				if (crew.status == "onboard") {
+					statusColor = "green";
+				} else if (crew.status == "enroute"){
+					statusColor = "black";
+				} else {
+					statusColor = "red";
+				}
 				planeText += "<li style='color:" + statusColor +"'>" + crewMember.position + " (" + crewMember.gemsId + ") " + crewMember.firstName + " " + crewMember.lastName
 			});
 			planeText += "</ul>";
@@ -181,7 +180,7 @@
       		} else {
       			// Create Van
 				var myLatLng = new google.maps.LatLng(van.latitude, van.longitude);
-	 			var vanText = updateVanInfoText();
+	 			var vanText = updateVanInfoText(van);
 	 			vanMarker = new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
@@ -205,7 +204,7 @@
 	  		van.crews.forEach(function(crewMember) {
 				vanText += "<li>" + crewMember.position + " (" + crewMember.gemsId + ") " + crewMember.firstName + " " + crewMember.lastName
 			});
-			vanText = "</ul>";
+			vanText += "</ul>";
 			return vanText;
  		}
        
