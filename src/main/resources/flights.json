@@ -58,96 +58,124 @@
     "imageId":0,
     "crews":[
       {
-        "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
+        "gemsId":"0424551",
+        "firstName":"Jack",
+        "lastName":"Black",
         "position":"CPT",
+        "status":"MIA"
+      },
+      {
+        "gemsId":"0585568",
+        "firstName":"Adam",
+        "lastName":"Sandler",
+        "position":"F/O",
         "status":"onboard"
       }
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23T06:00:00",
     "flightNumber":"UPS1002",
     "tailNumber":"J5425UP",
     "origin":"SDF",
-    "destination":"LAX",
-    "parkingPosition":"S4",
+    "destination":"MIA",
+    "parkingPosition":"B2",
     "latitude":38.168654,
     "longitude":-85.737845,
     "imageId":2,
     "crews":[
       {
-        "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
+        "gemsId":"0556865",
+        "firstName":"Jeremy",
+        "lastName":"Camp",
         "position":"CPT",
+        "status":"MIA"
+      },
+      {
+        "gemsId":"0542142",
+        "firstName":"Christopher",
+        "lastName":"Robbins",
+        "position":"F/O",
+        "status":"onboard"
+      },
+      {
+        "gemsId":"0875344",
+        "firstName":"Bill",
+        "lastName":"Cosby",
+        "position":"JS",
         "status":"onboard"
       }
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23T11:25:00",
     "flightNumber":"UPS1123",
     "tailNumber":"P5887UP",
     "origin":"SDF",
-    "destination":"LAX",
-    "parkingPosition":"S4",
+    "destination":"ANC",
+    "parkingPosition":"T4",
     "latitude":38.167197,
     "longitude":-85.737416,
     "imageId":1,
     "crews":[
       {
         "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
-        "position":"CPT",
-        "status":"onboard"
+        "firstName":"Arnold",
+        "lastName":"Schwarzeneiger",
+        "position":"T2",
+        "status":"WillBeBack"
       }
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23T23:08:00",
     "flightNumber":"UPS9989",
     "tailNumber":"T3321UP",
     "origin":"SDF",
-    "destination":"LAX",
-    "parkingPosition":"S4",
+    "destination":"BGM",
+    "parkingPosition":"L5",
     "latitude":38.166860,
     "longitude":-85.736290,
     "imageId":3,
     "crews":[
       {
-        "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
+        "gemsId":"0554324",
+        "firstName":"Brandon",
+        "lastName":"Pry",
         "position":"CPT",
+        "status":"onboard"
+      },
+      {
+        "gemsId":"05535435",
+        "firstName":"Will",
+        "lastName":"Smith",
+        "position":"F/O",
         "status":"onboard"
       }
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23T15:22:00",
     "flightNumber":"UPS4454",
     "tailNumber":"B1111UP",
     "origin":"SDF",
-    "destination":"LAX",
-    "parkingPosition":"S4",
+    "destination":"JMC",
+    "parkingPosition":"R7",
     "latitude":38.169998,
     "longitude":-85.737846,
     "imageId":1,
     "crews":[
       {
-        "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
+        "gemsId":"05652421",
+        "firstName":"Mike",
+        "lastName":"Sell",
         "position":"CPT",
         "status":"onboard"
       }
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23T03:15:00",
     "flightNumber":"UPS9696",
     "tailNumber":"L3236UP",
     "origin":"SDF",
@@ -158,9 +186,9 @@
     "imageId":3,
     "crews":[
       {
-        "gemsId":"0555111",
-        "firstName":"John",
-        "lastName":"Doe",
+        "gemsId":"0555542",
+        "firstName":"Johny",
+        "lastName":"Cash",
         "position":"CPT",
         "status":"onboard"
       }
