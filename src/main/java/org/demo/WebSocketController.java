@@ -3,6 +3,7 @@ package org.demo;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.io.IOUtils;
+import org.demo.domain.Crew;
 import org.demo.domain.FlightUpdate;
 import org.demo.domain.Message;
 import org.demo.domain.VanUpdate;
@@ -35,6 +36,8 @@ public class WebSocketController {
 		vanUpdate.setVanId("V495");
 		vanUpdate.setLatitude(38.166315);
 		vanUpdate.setLongitude(-85.729198);
+		Crew crew = new Crew();
+		vanUpdate.getCrews().add(crew);
 		sendVanUpdate(vanUpdate);
     }
     

@@ -1,10 +1,14 @@
 package org.demo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VanUpdate {
 	private String vanId;
 	private double latitude;
 	private double longitude;
-
+	private List<Crew> crews = new ArrayList<Crew>();
+	
 	public String getVanId() {
 		return vanId;
 	}
@@ -27,5 +31,13 @@ public class VanUpdate {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public List<Crew> getCrews() {
+		return crews;
+	}
+
+	public void setCrews(List<Crew> crews) {
+		this.crews = crews;
 	}
 }

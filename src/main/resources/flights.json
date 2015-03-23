@@ -1,6 +1,6 @@
 [
   {
-    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "scheduleDepartureTime":"2015-03-23 20:19Z",
     "flightNumber":"UPS1234",
     "tailNumber":"N1234UP",
     "origin":"SDF",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-24T12:04:00",
+    "scheduleDepartureTime":"2015-03-24 12:04Z",
     "flightNumber":"UPS5546",
     "tailNumber":"S564UP",
     "origin":"SDF",
@@ -47,7 +47,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-25T02:05:00",
+    "scheduleDepartureTime":"2015-03-25 02:05Z",
     "flightNumber":"UPS7032",
     "tailNumber":"N6658UP",
     "origin":"SDF",
@@ -74,7 +74,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T06:00:00",
+    "scheduleDepartureTime":"2015-03-23 06:00Z",
     "flightNumber":"UPS1002",
     "tailNumber":"J5425UP",
     "origin":"SDF",
@@ -108,7 +108,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T11:25:00",
+    "scheduleDepartureTime":"2015-03-23 11:25Z",
     "flightNumber":"UPS1123",
     "tailNumber":"P5887UP",
     "origin":"SDF",
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T23:08:00",
+    "scheduleDepartureTime":"2015-03-23 23:08Z",
     "flightNumber":"UPS9989",
     "tailNumber":"T3321UP",
     "origin":"SDF",
@@ -155,7 +155,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T15:22:00",
+    "scheduleDepartureTime":"2015-03-23 15:22Z",
     "flightNumber":"UPS4454",
     "tailNumber":"B1111UP",
     "origin":"SDF",
@@ -175,7 +175,7 @@
     ]
   },
   {
-    "scheduleDepartureTime":"2015-03-23T03:15:00",
+    "scheduleDepartureTime":"2015-03-23 03:15Z",
     "flightNumber":"UPS9696",
     "tailNumber":"L3236UP",
     "origin":"SDF",
