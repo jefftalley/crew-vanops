@@ -27,7 +27,6 @@ public class WebSocketController {
 	@PostConstruct
 	private void init() {
 		template.setDefaultDestination("/topic/messages");
-		// setupSimulatedVans();
 	}
 	
     @MessageMapping("/init")
@@ -35,6 +34,11 @@ public class WebSocketController {
 		for (FlightUpdate flightUpdate : flightService.getAllFlights()) {
 			sendFlightUpdate(flightUpdate);
 		}
+    }
+    
+    @MessageMapping("/pickUp")
+    public void pickUp() throws Exception {
+    	simulatePickup();
     }
     
     public void sendFlightUpdate(FlightUpdate flightUpdate) {
@@ -45,7 +49,7 @@ public class WebSocketController {
     	template.convertAndSend(new Message("vanUpdate", vanUpdate));
     }
     
-    private void setupSimulatedVans() {
+    private void simulatePickup() {
     	try {
     		String vans = IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("vans.txt"));
     		List<VanUpdate> vanUpdates = new ArrayList<VanUpdate>();
