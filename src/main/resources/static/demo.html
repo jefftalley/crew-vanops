@@ -1,1 +1,81 @@
-<!-- Test Commit -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"> </script>
+    <script src="js/sockjs-0.3.4.js"></script>
+    <script src="js/stomp.js"></script>
+    <script type="text/javascript">
+    var stompClient = null;
+
+        function setConnected(connected) {
+            document.getElementById('connect').disabled = connected;
+            document.getElementById('disconnect').disabled = !connected;
+            document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+            document.getElementById('response').innerHTML = '';
+        }
+
+        function connect() {
+            var socket = new SockJS('/hello');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                setConnected(true);
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/updates', function(greeting){
+                    showGreeting(JSON.parse(greeting.body).content);
+                });
+                stompClient.send("/app/init", {}, '');
+            });
+        }
+
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+    
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 38.174697, lng: -85.739562},
+          zoom: 17
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+         var image = {
+    		url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
+    		size: new google.maps.Size(50, 50),
+    		origin: new google.maps.Point(0,0),
+    		anchor: new google.maps.Point(0, 32),
+    		scaledSize: new google.maps.Size(35, 35)
+  		};
+  		var plane1Text = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
+    	var plane1InfoWindow = new google.maps.InfoWindow({
+      		content: plane1Text
+    	});
+		  var myLatLng = new google.maps.LatLng(38.174489, -85.739760);
+		  var plane1 = new google.maps.Marker({
+		      position: myLatLng,
+		      map: map,
+		      icon: image
+		  });
+      }
+      google.maps.event.addListener(plane1, 'click', function() {
+      	plane1InfoWindow.open(map, plane1);
+   	  });
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+  <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+    <div>
+        <button id="connect" onclick="connect();">Connect</button>
+        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+    </div>
+	<div id="map-canvas"></div>
+  </body>
+</html>
