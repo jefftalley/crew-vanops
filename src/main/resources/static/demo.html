@@ -9,12 +9,25 @@
     <script src="js/stomp.js"></script>
     <script type="text/javascript">
     var stompClient = null;
-
+	var map;
+	var mapOptions;
+	var planeMarker = [];
+	var flightArr = [];
+	var vanArr = [];
+	var flightNumber = []; 
+	var flightInfoWindow = [];
+	var planeInfoWindow;
+	var planeImage = {
+			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
+			size: new google.maps.Size(50, 50),
+			origin: new google.maps.Point(0,0),
+			anchor: new google.maps.Point(0, 32),
+			scaledSize: new google.maps.Size(35, 35)
+		};
+	
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
             document.getElementById('disconnect').disabled = !connected;
-            document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
-            document.getElementById('response').innerHTML = '';
         }
 
         function connect() {
@@ -28,9 +41,11 @@
 					if (messageBody.messageType === 'flightUpdate') {
 						processFlight(messageBody.content);
 					}
+					/*
 					if (messageBody.messageType === 'vanUpdate') {
 						processVan(messageBody.content);
 					}
+					*/
                 });
                 stompClient.send("/app/init", {}, '');
             });
@@ -45,14 +60,14 @@
         }
     
       function initialize() {
-        var mapOptions = {
+        mapOptions = {
           center: { lat: 38.174697, lng: -85.739562},
           zoom: 17
         };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
+        map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
         
-        var flightArr = [{"scheduleDepartureTime":"2015-03-23T20:19:00",
+        flightArr = [{"scheduleDepartureTime":"2015-03-23T20:19:00",
     							"flightNumber":"UPS1234",
     							"tailNumber":"N1234UP",
     							"origin":"SDF",
@@ -60,31 +75,9 @@
     							"parkingPosition":"S4",
     							"latitude":"38.17234463",
     							"longitude":"-85.73675752"}, {} ];
-		var vanArr = [];
-		var flightNumber = [];
-        
-        var image = {
-    		url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
-    		size: new google.maps.Size(50, 50),
-    		origin: new google.maps.Point(0,0),
-    		anchor: new google.maps.Point(0, 32),
-    		scaledSize: new google.maps.Size(35, 35)
-  		};
-  		var plane1Text = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
-  				  var myLatLng = new google.maps.LatLng(38.174489, -85.739760);
-  				  var plane1 = new google.maps.Marker({
-  				      position: myLatLng,
-  				      map: map,
-  				      icon: image
-  				  }); 
-  		var plane1InfoWindow = new google.maps.InfoWindow({
-  		   content: plane1Text,
-  		   maxWidth: 250
-  		});
-      	google.maps.event.addListener(plane1, 'click', function() {
-      		plane1InfoWindow.open(map, plane1);
-   	  	});
-  		
+		vanArr = [];
+		flightNumber = [];      
+		
       }
       
       function processFlight(flight) {
@@ -102,38 +95,40 @@
       	
       	if (exists == false) {
       		//Create New
-      		
-      		
-      		var image = {
-    			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
-    			size: new google.maps.Size(50, 50),
-    			origin: new google.maps.Point(0,0),
-    			anchor: new google.maps.Point(0, 32),
-    			scaledSize: new google.maps.Size(35, 35)
-  			};
-  			var plane1Text = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
-  				 var myLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
-  				 var plane1 = new google.maps.Marker({
-  			     position: myLatLng,
-  				 map: map,
-  				 icon: image
-  			}); 
-  			var plane1InfoWindow = new google.maps.InfoWindow({
-  		   		content: plane1Text,
-  		   		maxWidth: 250
-  			});
-      		google.maps.event.addListener(plane1, 'click', function() {
-      			plane1InfoWindow.open(map, plane1);
-   	  		});
-   	  		var plane1InfoWindow = new google.maps.InfoWindow({
-  			   content: plane1Text,
-  			   maxWidth: 250
-  			});
-    	  	google.maps.event.addListener(plane1, 'click', function() {
-    	  		plane1InfoWindow.open(map, plane1);
-   		  	});
+     
+      		var planeText = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
+    		var myLatLng = new google.maps.LatLng(38.174489, -85.739760);
+    		
+    		planeMarker[0] = new google.maps.Marker({
+    		     position: myLatLng,
+    			 map: map,
+    			 icon: planeImage
+    		});
+    		
+    		planeInfoWindow = new google.maps.InfoWindow({
+    	   		content: planeText,
+    	   		maxWidth: 250
+    		});
+    		
+     		google.maps.event.addListener(planeMarker[0], 'click', function() {
+     			planeInfoWindow.open(map, planeMarker[0]);
+    	  	});
     	  }
        }
+       
+       function processVan(van) {
+      
+      		exists = false;
+      		vanArr.forEach(function(vanObj) {
+      			if(van.vanNumber == vanObj.vanNumber) {
+      				//Update Van
+      			
+      			
+      			
+      				exists = true;
+      			}     		
+      		});
+      	}
        
    	google.maps.event.addDomListener(window, 'load', initialize);
     </script>
