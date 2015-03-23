@@ -16,7 +16,8 @@
 	var vanMarker = null;
 	var flightNumbers = []; 
 	var flightInfoWindow = [];
-	var planeInfoWindow;
+	var planeInfoWindows = [];
+	var vanInfoWindow;
 	var planeImage = {
 			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
 			size: new google.maps.Size(50, 50),
@@ -99,8 +100,10 @@
 	      	for(i = 0; i < flightNumbers.length; i++) {
 	      		if(flight.flightNumber == flightNumbers[i]) {
 	      			// Update Flight
-	      			planeMarkers[i].setPosition()
-	      			
+	      			var newLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
+	      			planeMarkers[i].setPosition(newLatLng);
+	      			var planeText = updateFlightInfoText(flight);
+	      			planeInfoWindows[i].setContent(planeText);
 	      			exists = true;
 	      		} 
 	      	}
@@ -108,20 +111,8 @@
 	   		// Create New
 	       		flightNumbers.push(flight.flightNumber);
 	       		
-	       		var planeText = flight.scheduleDepartureTime + "<br/>"
-	   			+ flight.flightNumber + "<br/>"
-	 				+ flight.tailNumber + "<br/>"
-	 				+ flight.origin + "<br/>"
-	 				+ flight.destination + "<br/>"
-	 				+ flight.parkingPosition + "<br/>"
-	 				+ flight.latitude + "<br/>"
-	 				+ flight.longitude + "<br/>"
-	 				+ "Crew:"
-	 				+ "\t" + flight.crews.gemsId + "<br/>"
-	 				+ "\t" + flight.crews.firstName + "<br/>"
-	 				+ "\t" + flight.crews.lastName + "<br/>"
-	 				+ "\t" + flight.crews.position + "<br/>"
-	 				+ "\t" + flight.crews.status + "<br/>";
+	       		var planeText = updateFlightInfoText(flight);
+	 				
 	 			var myLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
 	 			
 	 			var curPlaneMarker = planeMarkers.push( new google.maps.Marker({
@@ -130,21 +121,44 @@
 	 				 icon: planeImage
 	 			}));
 	 			
-	 			planeInfoWindow = new google.maps.InfoWindow({
+	 			var curPlaneInfoWidnow = planeInfoWindows.push(new google.maps.InfoWindow({
 	 					content: planeText,
 	 					maxWidth: 250
-	 			});
+	 			}));
 	 			
 	 			google.maps.event.addListener(planeMarkers[curPlaneMarker - 1], 'click', function() {
-	 				planeInfoWindow.open(map, planeMarkers[curPlaneMarker - 1]);
+	 				planeInfoWindows[curPlaneInfoWindow].open(map, planeMarkers[curPlaneMarker - 1]);
 	 			});
 	    	}
        }
+      
+      function updateFlightInfoText(flight) {
+    	  		var planeText = flight.scheduleDepartureTime + "<br/>"
+ 				+ flight.flightNumber + "<br/>"
+				+ flight.tailNumber + "<br/>"
+				+ flight.origin + "<br/>"
+				+ flight.destination + "<br/>"
+				+ flight.parkingPosition + "<br/>"
+				+ "Crew:<br/>";
+				
+				forEach(flight.crew, function(crewMember) {
+					planeText += "\t" + crewMember.gemsId + "<br/>"
+	 				+ "\t" + crewMember.firstName + "<br/>"
+	 				+ "\t" + crewMember.lastName + "<br/>"
+	 				+ "\t" + crewMember.position + "<br/>"
+	 				+ "\t" + crewMember.status + "<br/>";
+				});
+				
+				return planeText;
+      }
        
        function processVan(van) {
       		if(vanMarker != null) {
       			// Update Van
-      			
+      			var newLatLng = new google.maps.LatLng(van.latitude, van.longitude);
+      			vanMarker.setPosition(newLatLng);
+      			var vanText = updateVanInfoText(van);
+      			vanInfoWindow.setContent(vanText);
       		} else {
       			// Create Van
 				var myLatLng = new google.maps.LatLng(van.latitude, van.longitude);
@@ -165,6 +179,20 @@
 	 			});	
       		}
       	}
+       
+       function updateVanInfoText(van) {
+	  		var vanText = van.vanId;
+			
+			/* forEach(flight.crew, function(crewMember) {
+				planeText += "\t" + crewMember.gemsId + "<br/>"
+				+ "\t" + crewMember.firstName + "<br/>"
+				+ "\t" + crewMember.lastName + "<br/>"
+				+ "\t" + crewMember.position + "<br/>"
+				+ "\t" + crewMember.status + "<br/>";
+			}); */
+			
+			return vanText;
+ 		}
        
    	google.maps.event.addDomListener(window, 'load', initialize);
     </script>
