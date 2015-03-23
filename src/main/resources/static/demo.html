@@ -17,19 +17,40 @@
 	var flightInfoWindow = [];
 	var planeInfoWindows = [];
 	var vanInfoWindow;
-	var planeImage = {
-			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
-			size: new google.maps.Size(50, 50),
+	var planeImage = [{
+			url: 'images/airplane-red-45.svg',
+			size: new google.maps.Size(75, 75),
 			origin: new google.maps.Point(0,0),
 			anchor: new google.maps.Point(0, 0),
-			scaledSize: new google.maps.Size(35, 35)
-		};
+			scaledSize: new google.maps.Size(50, 50)
+		}],
+	[{
+			url: 'images/airplane-black-45-svg',
+			size: new google.maps.Size(75, 75),
+			origin: new google.maps.Point(0,0),
+			anchor: new google.maps.Point(0, 0),
+			scaledSize: new google.maps.Size(50, 50)
+		}],
+	[{
+			url: 'images/airplane-red-UD.svg',
+			size: new google.maps.Size(75, 75),
+			origin: new google.maps.Point(0,0),
+			anchor: new google.maps.Point(0, 0),
+			scaledSize: new google.maps.Size(50, 50)
+		}],
+	[{
+			url: 'images/airplane-black-UD.svg',
+			size: new google.maps.Size(75, 75),
+			origin: new google.maps.Point(0,0),
+			anchor: new google.maps.Point(0, 0),
+			scaledSize: new google.maps.Size(50, 50)
+		}];
 	var vanImage = {
 			url: 'http://cdn.flaticon.com/png/256/26875.png',
-			size: new google.maps.Size(20, 20),
+			size: new google.maps.Size(30, 30),
 			origin: new google.maps.Point(0,0),
 			anchor: new google.maps.Point(0, 0),
-			scaledSize: new google.maps.Size(15, 15)
+			scaledSize: new google.maps.Size(20, 20)
 	}
 
         function connect() {
@@ -57,7 +78,7 @@
     
       function initialize() {   	  
         mapOptions = {
-          center: { lat: 38.174697, lng: -85.739562},
+          center: { lat: 38.168848, lng: -85.733114},
           zoom: 17
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -75,6 +96,7 @@
 	      			// Update Flight
 	      			var newLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
 	      			planeMarkers[i].setPosition(newLatLng);
+	      			planeMarkers[i].setIcon(planeImage[flight.imageId]);
 	      			var planeText = updateFlightInfoText(flight);
 	      			planeInfoWindows[i].setContent(planeText);
 	      			exists = true;
@@ -91,7 +113,7 @@
 	 			var curPlaneMarker = new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
-	 				 icon: planeImage
+	 				 icon: planeImage[flight.imageId]
 	 			});
 	 			
 	 			planeMarkers.push(curPlaneMarker);
@@ -101,10 +123,10 @@
 	 					maxWidth: 250
 	 			});
 	 			
-	 			var planeInfoWindows.push(curPlaneInfoWindow);
+	 			planeInfoWindows.push(curPlaneInfoWindow);
 	 			
 	 			google.maps.event.addListener(curPlaneMarker, 'click', function() {
-	 				planeInfoWindows[curPlaneInfoWindow].open(map, curPlaneMarker]);
+	 				curPlaneInfoWindow.open(map, curPlaneMarker);
 	 			});
 	    	}
        }
@@ -144,7 +166,7 @@
 	 			     position: myLatLng,
 	 				 map: map,
 	 				 icon: vanImage
-	 			}));
+	 			});
 	 			
 	 			vanInfoWindow = new google.maps.InfoWindow({
 	 					content: vanText,
