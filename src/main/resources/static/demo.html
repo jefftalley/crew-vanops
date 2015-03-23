@@ -135,8 +135,8 @@
 	 					maxWidth: 250
 	 			});
 	 			
-	 			google.maps.event.addListener(curPlaneMarker, 'click', function() {
-	 				planeInfoWindow.open(map, curPlaneMarker);
+	 			google.maps.event.addListener(planeMarkers[curPlaneMarker - 1], 'click', function() {
+	 				planeInfoWindow.open(map, planeMarkers[curPlaneMarker - 1]);
 	 			});
 	    	}
        }
