@@ -23,13 +23,19 @@
             stompClient.connect({}, function(frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/updates', function(greeting){
-                    showGreeting(JSON.parse(greeting.body).content);
+                stompClient.subscribe('/topic/messages', function(message){
+                	var messageBody = JSON.parse(message.body);
+					if (messageBody.messageType === 'flightUpdate') {
+						processFlight(messageBody.content);
+					}
+					if (messageBody.messageType === 'vanUpdate') {
+						processVan(messageBody.content);
+					}
                 });
                 stompClient.send("/app/init", {}, '');
             });
         }
-
+	
         function disconnect() {
             if (stompClient != null) {
                 stompClient.disconnect();
@@ -45,7 +51,12 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-         var image = {
+        
+        var flightArr = [];
+		var vanArr = [];
+		var flightNumber = [];
+        
+        var image = {
     		url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
     		size: new google.maps.Size(50, 50),
     		origin: new google.maps.Point(0,0),
@@ -53,20 +64,70 @@
     		scaledSize: new google.maps.Size(35, 35)
   		};
   		var plane1Text = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
-    	var plane1InfoWindow = new google.maps.InfoWindow({
-      		content: plane1Text
-    	});
-		  var myLatLng = new google.maps.LatLng(38.174489, -85.739760);
-		  var plane1 = new google.maps.Marker({
-		      position: myLatLng,
-		      map: map,
-		      icon: image
-		  });
+  				  var myLatLng = new google.maps.LatLng(38.174489, -85.739760);
+  				  var plane1 = new google.maps.Marker({
+  				      position: myLatLng,
+  				      map: map,
+  				      icon: image
+  				  }); 
+  		var plane1InfoWindow = new google.maps.InfoWindow({
+  		   content: plane1Text,
+  		   maxWidth: 250
+  		});
+      	google.maps.event.addListener(plane1, 'click', function() {
+      		plane1InfoWindow.open(map, plane1);
+   	  	});
+  		
       }
-      google.maps.event.addListener(plane1, 'click', function() {
-      	plane1InfoWindow.open(map, plane1);
-   	  });
-      google.maps.event.addDomListener(window, 'load', initialize);
+      
+      function processFlight(flight) {
+      
+      	exists = false;
+      	flightArr.forEach(function(flightObj) {
+      		if(flight.flightNumber == flightObj.flightNumber) {
+      			//Update Flight
+      			
+      			
+      			
+      			exists = true;
+      		}     		
+      	});
+      	
+      	if (exists == false) {
+      		//Create New
+      		
+      		var image = {
+    			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
+    			size: new google.maps.Size(50, 50),
+    			origin: new google.maps.Point(0,0),
+    			anchor: new google.maps.Point(0, 32),
+    			scaledSize: new google.maps.Size(35, 35)
+  			};
+  			var plane1Text = "Crewmembers:<br/>Joe Jones<br/>Jeff Talley<br/>Brandon Pry</>";
+  				 var myLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
+  				 var plane1 = new google.maps.Marker({
+  			     position: myLatLng,
+  				 map: map,
+  				 icon: image
+  			}); 
+  			var plane1InfoWindow = new google.maps.InfoWindow({
+  		   		content: plane1Text,
+  		   		maxWidth: 250
+  			});
+      		google.maps.event.addListener(plane1, 'click', function() {
+      			plane1InfoWindow.open(map, plane1);
+   	  		});
+   	  		var plane1InfoWindow = new google.maps.InfoWindow({
+  			   content: plane1Text,
+  			   maxWidth: 250
+  			});
+    	  	google.maps.event.addListener(plane1, 'click', function() {
+    	  		plane1InfoWindow.open(map, plane1);
+   		  	});
+    	  }
+       }
+       
+   	google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
