@@ -36,13 +36,20 @@
         "lastName":"Jones",
         "position":"CPT+",
         "status":"onboard"
+      },
+      {
+        "gemsId":"0545522",
+        "firstName":"Scott",
+        "lastName":"Fairfield",
+        "position":"F/O",
+        "status":"onboard"
       }
     ]
   },
   {
     "scheduleDepartureTime":"2015-03-25T02:05:00",
-    "flightNumber":"UPS2345",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS7032",
+    "tailNumber":"N6658UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
@@ -61,8 +68,8 @@
   },
   {
     "scheduleDepartureTime":"2015-03-23T20:19:00",
-    "flightNumber":"UPS1234",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS1002",
+    "tailNumber":"J5425UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
@@ -81,8 +88,8 @@
   },
   {
     "scheduleDepartureTime":"2015-03-23T20:19:00",
-    "flightNumber":"UPS1234",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS1123",
+    "tailNumber":"P5887UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
@@ -101,8 +108,8 @@
   },
   {
     "scheduleDepartureTime":"2015-03-23T20:19:00",
-    "flightNumber":"UPS1234",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS9989",
+    "tailNumber":"T3321UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
@@ -121,8 +128,8 @@
   },
   {
     "scheduleDepartureTime":"2015-03-23T20:19:00",
-    "flightNumber":"UPS1234",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS4454",
+    "tailNumber":"B1111UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
@@ -141,8 +148,8 @@
   },
   {
     "scheduleDepartureTime":"2015-03-23T20:19:00",
-    "flightNumber":"UPS1235",
-    "tailNumber":"N1234UP",
+    "flightNumber":"UPS9696",
+    "tailNumber":"L3236UP",
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
