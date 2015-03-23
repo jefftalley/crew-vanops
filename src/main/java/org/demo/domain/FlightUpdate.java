@@ -11,6 +11,7 @@ public class FlightUpdate {
 	private String origin;
 	private String destination;
 	private String parkingPosition;
+	private int imageId;
 	private double latitude;
 	private double longitude;
 	private List<Crew> crews = new ArrayList<Crew>();
@@ -61,6 +62,14 @@ public class FlightUpdate {
 
 	public void setParkingPosition(String parkingPosition) {
 		this.parkingPosition = parkingPosition;
+	}
+
+	public int getImageId() {
+		return imageId;
+	}
+
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
 	}
 
 	public double getLatitude() {
