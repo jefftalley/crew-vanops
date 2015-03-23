@@ -6,8 +6,8 @@
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
-    "latitude":"38.17234463",
-    "longitude":"-85.73675752",
+    "latitude":38.17234463,
+    "longitude":-85.73675752,
     "crews":[
       {
         "gemsId":"0555111",
@@ -25,8 +25,8 @@
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
-    "latitude":"38.17355076",
-    "longitude":"-85.73682189",
+    "latitude":38.17355076,
+    "longitude":-85.73682189,
     "crews":[
       {
         "gemsId":"0555111",

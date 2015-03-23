@@ -11,8 +11,8 @@ public class FlightUpdate {
 	private String origin;
 	private String destination;
 	private String parkingPosition;
-	private String latitude;
-	private String longitude;
+	private double latitude;
+	private double longitude;
 	private List<Crew> crews = new ArrayList<Crew>();
 	
 	public String getScheduleDepartureTime() {
@@ -63,19 +63,19 @@ public class FlightUpdate {
 		this.parkingPosition = parkingPosition;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
