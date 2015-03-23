@@ -6,8 +6,129 @@
     "origin":"SDF",
     "destination":"LAX",
     "parkingPosition":"S4",
+    "latitude":38.168165,
+    "longitude":-85.736021,
+    "imageId":0,
+    "crews":[
+      {
+        "gemsId":"0555111",
+        "firstName":"John",
+        "lastName":"Doe",
+        "position":"CPT",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-24T12:04:00",
+    "flightNumber":"UPS5546",
+    "tailNumber":"S564UP",
+    "origin":"SDF",
+    "destination":"ANC",
+    "parkingPosition":"S4",
+    "latitude":38.166219,
+    "longitude":-85.738253,
+    "imageId":2,
+    "crews":[
+      {
+        "gemsId":"0321546",
+        "firstName":"Joe",
+        "lastName":"Jones",
+        "position":"CPT+",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-25T02:05:00",
+    "flightNumber":"UPS2345",
+    "tailNumber":"N1234UP",
+    "origin":"SDF",
+    "destination":"LAX",
+    "parkingPosition":"S4",
     "latitude":38.17234463,
     "longitude":-85.73675752,
+    "imageId":0,
+    "crews":[
+      {
+        "gemsId":"0555111",
+        "firstName":"John",
+        "lastName":"Doe",
+        "position":"CPT",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "flightNumber":"UPS1234",
+    "tailNumber":"N1234UP",
+    "origin":"SDF",
+    "destination":"LAX",
+    "parkingPosition":"S4",
+    "latitude":38.17234463,
+    "longitude":-85.73675752,
+    "imageId":2,
+    "crews":[
+      {
+        "gemsId":"0555111",
+        "firstName":"John",
+        "lastName":"Doe",
+        "position":"CPT",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "flightNumber":"UPS1234",
+    "tailNumber":"N1234UP",
+    "origin":"SDF",
+    "destination":"LAX",
+    "parkingPosition":"S4",
+    "latitude":38.17234463,
+    "longitude":-85.73675752,
+    "imageId":1,
+    "crews":[
+      {
+        "gemsId":"0555111",
+        "firstName":"John",
+        "lastName":"Doe",
+        "position":"CPT",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "flightNumber":"UPS1234",
+    "tailNumber":"N1234UP",
+    "origin":"SDF",
+    "destination":"LAX",
+    "parkingPosition":"S4",
+    "latitude":38.17234463,
+    "longitude":-85.73675752,
+    "imageId":3,
+    "crews":[
+      {
+        "gemsId":"0555111",
+        "firstName":"John",
+        "lastName":"Doe",
+        "position":"CPT",
+        "status":"onboard"
+      }
+    ]
+  },
+  {
+    "scheduleDepartureTime":"2015-03-23T20:19:00",
+    "flightNumber":"UPS1234",
+    "tailNumber":"N1234UP",
+    "origin":"SDF",
+    "destination":"LAX",
+    "parkingPosition":"S4",
+    "latitude":38.17234463,
+    "longitude":-85.73675752,
+    "imageId":1,
     "crews":[
       {
         "gemsId":"0555111",
@@ -27,6 +148,7 @@
     "parkingPosition":"S4",
     "latitude":38.17355076,
     "longitude":-85.73682189,
+    "imageId":3,
     "crews":[
       {
         "gemsId":"0555111",
