@@ -12,7 +12,6 @@
 	var map;
 	var mapOptions;
 	var planeMarkers = [];
-	var flightArr = [];
 	var vanMarker = null;
 	var flightNumbers = []; 
 	var flightInfoWindow = [];
@@ -22,49 +21,34 @@
 			url: 'http://upload.wikimedia.org/wikipedia/commons/0/01/Airplane_silhouette_45degree_angle.svg',
 			size: new google.maps.Size(50, 50),
 			origin: new google.maps.Point(0,0),
-			anchor: new google.maps.Point(0, 32),
+			anchor: new google.maps.Point(0, 0),
 			scaledSize: new google.maps.Size(35, 35)
 		};
 	var vanImage = {
 			url: 'http://cdn.flaticon.com/png/256/26875.png',
 			size: new google.maps.Size(20, 20),
 			origin: new google.maps.Point(0,0),
-			anchor: new google.maps.Point(0, 32),
+			anchor: new google.maps.Point(0, 0),
 			scaledSize: new google.maps.Size(15, 15)
 	}
-	
-        function setConnected(connected) {
-            document.getElementById('connect').disabled = connected;
-            document.getElementById('disconnect').disabled = !connected;
-        }
 
         function connect() {
             var socket = new SockJS('/requests');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
-                setConnected(true);
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/messages', function(message){
                 	var messageBody = JSON.parse(message.body);
 					if (messageBody.messageType === 'flightUpdate') {
 						processFlight(messageBody.content);
 					}
-					/*
 					if (messageBody.messageType === 'vanUpdate') {
 						processVan(messageBody.content);
 					}
-					*/
+					
                 });
                 stompClient.send("/app/init", {}, '');
             });
-        }
-	
-        function disconnect() {
-            if (stompClient != null) {
-                stompClient.disconnect();
-            }
-            setConnected(false);
-            console.log("Disconnected");
         }
         
         function pickUp() {
@@ -77,18 +61,7 @@
           zoom: 17
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-        
-        flightArr = [{"scheduleDepartureTime":"2015-03-23T20:19:00",
-    							"flightNumber":"UPS1234",
-    							"tailNumber":"N1234UP",
-    							"origin":"SDF",
-    							"destination":"LAX",
-    							"parkingPosition":"S4",
-    							"latitude":"38.17234463",
-    							"longitude":"-85.73675752"}, {} ];
-		vanArr = [];
-		flightNumber = [];      
+            mapOptions);     
 		
 		connect();
       }
@@ -115,38 +88,42 @@
 	 				
 	 			var myLatLng = new google.maps.LatLng(flight.latitude, flight.longitude);
 	 			
-	 			var curPlaneMarker = planeMarkers.push( new google.maps.Marker({
+	 			var curPlaneMarker = new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
 	 				 icon: planeImage
-	 			}));
+	 			});
 	 			
-	 			var curPlaneInfoWidnow = planeInfoWindows.push(new google.maps.InfoWindow({
+	 			planeMarkers.push(curPlaneMarker);
+	 			
+	 			var curPlaneInfoWindow = new google.maps.InfoWindow({
 	 					content: planeText,
 	 					maxWidth: 250
-	 			}));
+	 			});
 	 			
-	 			google.maps.event.addListener(planeMarkers[curPlaneMarker - 1], 'click', function() {
-	 				planeInfoWindows[curPlaneInfoWindow].open(map, planeMarkers[curPlaneMarker - 1]);
+	 			var planeInfoWindows.push(curPlaneInfoWindow);
+	 			
+	 			google.maps.event.addListener(curPlaneMarker, 'click', function() {
+	 				planeInfoWindows[curPlaneInfoWindow].open(map, curPlaneMarker]);
 	 			});
 	    	}
        }
       
       function updateFlightInfoText(flight) {
     	  		var planeText = flight.scheduleDepartureTime + "<br/>"
- 				+ flight.flightNumber + "<br/>"
-				+ flight.tailNumber + "<br/>"
-				+ flight.origin + "<br/>"
-				+ flight.destination + "<br/>"
-				+ flight.parkingPosition + "<br/>"
+ 				+ "Flight #: " + flight.flightNumber + "<br/>"
+				+ "Tail #: " + flight.tailNumber + "<br/>"
+				+ "Origin: " + flight.origin + "<br/>"
+				+ "Desitination: " +flight.destination + "<br/>"
+				+ "Parking Pos.: " + flight.parkingPosition + "<br/>"
 				+ "Crew:<br/>";
 				
-				forEach(flight.crew, function(crewMember) {
+				flight.crews.forEach(function(crewMember) {
 					planeText += "\t" + crewMember.gemsId + "<br/>"
-	 				+ "\t" + crewMember.firstName + "<br/>"
-	 				+ "\t" + crewMember.lastName + "<br/>"
-	 				+ "\t" + crewMember.position + "<br/>"
-	 				+ "\t" + crewMember.status + "<br/>";
+	 				+ "\t First Name: " + crewMember.firstName + "<br/>"
+	 				+ "\t Last Name:" + crewMember.lastName + "<br/>"
+	 				+ "\t Pos.: " + crewMember.position + "<br/>"
+	 				+ "\t Status: " + crewMember.status + "<br/>";
 				});
 				
 				return planeText;
@@ -163,7 +140,7 @@
       			// Create Van
 				var myLatLng = new google.maps.LatLng(van.latitude, van.longitude);
 	 			
-	 			vanMarker.push( new google.maps.Marker({
+	 			vanMarker = new google.maps.Marker({
 	 			     position: myLatLng,
 	 				 map: map,
 	 				 icon: vanImage
