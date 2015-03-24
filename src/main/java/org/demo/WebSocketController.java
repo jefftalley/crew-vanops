@@ -36,26 +36,52 @@ public class WebSocketController {
 		vanUpdate.setVanId("V495");
 		vanUpdate.setLatitude(38.166315);
 		vanUpdate.setLongitude(-85.729198);
-		Crew crew = new Crew();
-		vanUpdate.getCrews().add(crew);
 		sendVanUpdate(vanUpdate);
     }
     
     @MessageMapping("/pickUp")
     public void pickUp() throws Exception {
     	try {
+
+    		FlightUpdate flightUpdate = flightService.getAllFlights().get(2);
+    		flightUpdate.getCrews().get(0).setStatus("enroute");
+    		flightUpdate.getCrews().get(1).setStatus("enroute");
+    		sendFlightUpdate(flightUpdate);
+
     		String vans = IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("vans.txt"));
+    		VanUpdate vanUpdate = null;
     		for (String van : vans.split("\r\n")) {
-    			VanUpdate vanUpdate = new VanUpdate();
+    			vanUpdate = new VanUpdate();
     			String[] items = van.split(" ");
     			vanUpdate.setVanId(items[0]);
     			vanUpdate.setLatitude(Double.parseDouble(items[1]));
     			vanUpdate.setLongitude(Double.parseDouble(items[2]));
+
+    			Crew crew1 = new Crew();
+    			crew1.setGemsId("0424551");
+    			crew1.setFirstName("Jack");
+    			crew1.setLastName("Black");
+    			crew1.setPosition("CPT");
+    			crew1.setStatus("enroute");
+    			vanUpdate.getCrews().add(crew1);
+
+    			Crew crew2 = new Crew();
+    			crew2.setGemsId("0585568");
+    			crew2.setFirstName("Adam");
+    			crew2.setLastName("Sandler");
+    			crew2.setPosition("F/O");
+    			crew2.setStatus("enroute");
+    			vanUpdate.getCrews().add(crew2);
+    			
     			sendVanUpdate(vanUpdate);
     			Thread.sleep(Long.parseLong(items[3]) * 1000);
     		}
-    		FlightUpdate flightUpdate = flightService.getAllFlights().get(2);
-    		flightUpdate.setImageId(2);
+    		vanUpdate.getCrews().clear();
+    		sendVanUpdate(vanUpdate);
+    		
+    		flightUpdate.setImageId(0);
+    		flightUpdate.getCrews().get(0).setStatus("onboard");
+    		flightUpdate.getCrews().get(1).setStatus("onboard");
     		sendFlightUpdate(flightUpdate);
     	} catch (Exception e) {
     		e.printStackTrace();
