@@ -20,23 +20,4 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/requests").withSockJS();
 	}
-	
-//    @Bean
-//    public JodaModule jacksonJodaModule() {
-//        JodaModule module = new JodaModule();
-//        DateTimeFormatterFactory formatterFactory = new DateTimeFormatterFactory();
-//        formatterFactory.setIso(ISO.DATE_TIME);
-//        module.addSerializer(DateTime.class, new DateTimeSerializer(
-//            new JacksonJodaFormat(formatterFactory.createDateTimeFormatter().withZoneUTC())));
-//        return module;
-//    }
-    
-    
-//	@Bean
-//	public ServletRegistrationBean dispatcherRegistration(DispatcherServlet dispatcherServlet) {
-//	    ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet);
-//	    registration.addUrlMappings("/service/*");
-//	    return registration;
-//	}
-
 }

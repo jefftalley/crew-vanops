@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class FlightService {
 	public List<FlightUpdate> getAllFlights() {
-		
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			return Arrays.asList(mapper.readValue(
@@ -20,30 +19,5 @@ public class FlightService {
 			e.printStackTrace();
 			return null;
 		}
-
-//		List<FlightUpdate> flightUpdates = new ArrayList<FlightUpdate>();
-//		
-//		FlightUpdate flightUpdate = new FlightUpdate();
-//		flightUpdate.setScheduleDepartureTime(DateTime.now());
-//		flightUpdate.setFlightNumber("UPS1234");
-//		flightUpdate.setTailNumber("N1234UP");
-//		flightUpdate.setOrigin("SDF");
-//		flightUpdate.setDestination("LAX");
-//		flightUpdate.setParkingPosition("S4");
-//		flightUpdate.setLatitude("38.170331");
-//		flightUpdate.setLongitude("-85.737431");
-//		
-//		Crew crew = new Crew();
-//		crew.setGemsId("0555111");
-//		crew.setFirstName("John");
-//		crew.setLastName("Doe");
-//		crew.setPosition("CPT");
-//		crew.setStatus("onboard");
-//
-//		flightUpdate.getCrews().add(crew);
-//		
-//		flightUpdates.add(flightUpdate);
-//		
-//		return flightUpdates;
 	}
 }
